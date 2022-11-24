@@ -1,34 +1,36 @@
 import React from 'react';
 import CategoriesCard from './CategoriesCard';
-import dell from '../../../assets/dell-inspiron-15.jpg'
-import hp from '../../../assets/hp-15s.jpg'
-import asus from '../../../assets/asus-vivobook-15.jpg'
+import { useQuery } from '@tanstack/react-query';
 
 const Categories = () => {
 
-    const categoriesData = [
-        {
-            id: 1,
-            name: 'Dell',
-            description: 'Lorem Ipsum is simply dummy printing and typesetting indust Ipsum has been the',
-            icon: dell,
-            bgClass: 'bg-gradient-to-r from-primary to-secondary'
-        },
-        {
-            id: 2,
-            name: 'Hp',
-            description: 'Lorem Ipsum is simply dummy printing and typesetting indust Ipsum has been the',
-            icon: hp,
-            bgClass: 'bg-gradient-to-r from-primary to-secondary'
-        },
-        {
-            id: 3,
-            name: 'Asus',
-            description: 'Lorem Ipsum is simply dummy printing and typesetting indust Ipsum has been the',
-            icon: asus,
-            bgClass: 'bg-gradient-to-r from-primary to-secondary'
-        },
-    ]
+    const { data: categories = [], refetch, isLoading } = useQuery({
+        queryKey: ['appointmentOptions,date'],
+        queryFn: async () => {
+            const res = await fetch(`http://localhost:5000/categories`)
+            const data = await res.json()
+            return data
+        }
+    })
+
+    // const categoriesData =
+    //     [
+    //         {
+    //             "title": "Dell",
+    //             "icon": "https://www.startech.com.bd/image/cache/catalog/laptop/dell/inspiron-15-3511/inspiron-15-3511-88989-228x228.jpg"
+
+    //         },
+    //         {
+    //             "title": "Hp",
+    //             "icon": "https://www.startech.com.bd/image/cache/catalog/laptop/hp-laptop/15s-du1116tu/15s-du1116tu-01-228x228.jpg"
+
+    //         },
+    //         {
+    //             "title": "Asus",
+    //             "icon": "https://www.startech.com.bd/image/cache/catalog/laptop/asus/vivobook-15-x515ea/vivobook-15-x515ea-01-228x228.jpg"
+
+    //         }
+    //     ]
 
     return (
         <div className='mt-24'>
@@ -38,8 +40,8 @@ const Categories = () => {
             </div>
             <div className='grid mt-4 gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
                 {
-                    categoriesData.map(categorie => <CategoriesCard
-                        key={categorie.id}
+                    categories.map(categorie => <CategoriesCard
+                        key={categorie._id}
                         categorie={categorie}
                     ></CategoriesCard>)
                 }

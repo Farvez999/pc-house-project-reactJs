@@ -1,5 +1,4 @@
 import React from 'react';
-import bg from '../../assets/bg.webp'
 import banner_pc from '../../assets/banner_pc.png'
 import PrimaryButton from '../../components/PrimaryButton';
 
