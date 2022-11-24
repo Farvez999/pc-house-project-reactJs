@@ -42,7 +42,8 @@ const Signup = () => {
                 }
                 updateUser(userInfo)
                     .then(() => {
-                        saveUserDasboard(data.name, data.email)
+                        saveUserDasboard(data.name, data.email, data.userSelect)
+                        console.log(data.userSelect)
                     }).catch((error) => {
                         console.log(error)
                     });
@@ -54,8 +55,8 @@ const Signup = () => {
             });
     }
 
-    const saveUserDasboard = (name, email) => {
-        const user = { name, email };
+    const saveUserDasboard = (name, email, userSelect) => {
+        const user = { name, email, userSelect };
         fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {
@@ -103,6 +104,17 @@ const Signup = () => {
                         <input {...register("email", { required: "Email Address is required" })} type="text" className="input input-bordered w-full max-w-xs" />
                         {errors.email && <p className='text-red-500' role="alert">{errors.email?.message}</p>}
                     </div>
+
+                    <div className="form-control w-full max-w-xs mt-4">
+                        <select {...register("userSelect")} className="select select-bordered w-full max-w-xs">
+
+                            <option>Seller</option>
+                            <option>Buyer</option>
+                        </select>
+
+                    </div>
+
+
 
 
                     <div className="form-control w-full max-w-xs">
