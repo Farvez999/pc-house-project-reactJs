@@ -6,7 +6,7 @@ const ProductOption = ({ product, data }) => {
     console.log(data)
     return (
         <div className="card card-compact bg-base-100 shadow-xl">
-            <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
+            <figure><img src={image} alt="Shoes" /></figure>
             <div className="card-body">
                 <h2 className="card-title">{product_name}</h2>
                 <p>{location}</p>

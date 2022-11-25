@@ -12,7 +12,7 @@ const CategoriesCard = ({ categorie }) => {
 
     return (
         <div onClick={handleCategory} className="card bg-base-100 shadow-xl">
-            <Link to={`/categories/${_id}`}>
+            <Link to={`/categorie/${_id}`}>
                 <figure className="px-6 pt-10">
                     <img src={icon} alt="Shoes" className="rounded-xl" />
                 </figure>
