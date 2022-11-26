@@ -16,6 +16,7 @@ import ErrorPage from "../Pages/Other/ErrorPage/ErrorPage"
 import AdminRoute from "./AdminRoutes"
 import PrivateRoutes from "./PrivateRoutes"
 import SellerRoute from "./SellerRoutes"
+import Payment from "../Dashboard/Buyers/Payment"
 
 const router = createBrowserRouter([
     {
@@ -83,11 +84,11 @@ const router = createBrowserRouter([
             //     path: '/dashboard/managedoctors',
             //     element: <AdminRoutes><ManageDoctors></ManageDoctors></AdminRoutes>
             // },
-            // {
-            //     path: '/dashboard/payment/:id',
-            //     element: <Payment></Payment>,
-            //     loader: ({ params }) => fetch(`https://doctors-portal-server-rose.vercel.app/bookings/${params.id}`)
-            // },
+            {
+                path: '/dashboard/payment/:id',
+                element: <Payment></Payment>,
+                loader: ({ params }) => fetch(`http://localhost:5000/bookings/${params.id}`)
+            },
         ]
     },
     {

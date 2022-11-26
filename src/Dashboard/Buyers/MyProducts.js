@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 const MyProducts = () => {
@@ -48,20 +49,20 @@ const MyProducts = () => {
                                     </div></td>
                                     <td>{booking.title}</td>
                                     <td>{booking.resalePrice}</td>
-                                    {/* <td>
+                                    <td>
                                         {
-                                        booking.price && !booking.paid &&
-                                        <Link to={`/dashboard/payment/${booking._id}`}>
-                                            <button className='btn btn-primary btn-sm'
-                                            >Pay</button>
-                                        </Link>
-                                    }
-                                    {
-                                        booking.price && booking.paid &&
-                                        <span className='text-primary'
-                                        >Paid</span>
-                                    }
-                                    </td> */}
+                                            booking.resalePrice && !booking.paid &&
+                                            <Link to={`/dashboard/payment/${booking._id}`}>
+                                                <button className='btn btn-primary btn-sm'
+                                                >Pay</button>
+                                            </Link>
+                                        }
+                                        {
+                                            booking.resalePrice && booking.paid &&
+                                            <span className='text-primary'
+                                            >Paid</span>
+                                        }
+                                    </td>
                                 </tr>)
                             }
                         </tbody>

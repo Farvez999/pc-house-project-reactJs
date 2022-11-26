@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import Loading from '../../Pages/Shared/Loading'
 
@@ -12,6 +13,8 @@ const AddProduct = () => {
     const [isloader, setIsloader] = useState(false)
     const [author, setAuthor] = useState({});
     const email = user?.email;
+
+    const navigate = useNavigate()
 
 
     useEffect(() => {
@@ -74,6 +77,7 @@ const AddProduct = () => {
                                 console.log(data);
                                 setIsloader(false)
                                 toast.success('your product hasbeen process please waite for admin aproved')
+                                navigate('/dashboard/sellerProducts')
                             }
                         })
                         .catch(error => { toast.error(error.message); setIsloader(false) })
