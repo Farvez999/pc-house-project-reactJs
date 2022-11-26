@@ -31,8 +31,8 @@ const AllSeller = () => {
 
     return (
         <div>
-            <h2 className="text-3xl">All Seller</h2>
-            <div className="overflow-x-auto">
+            <h2 className="text-3xl mt-4">All Seller</h2>
+            <div className="overflow-x-auto mt-4">
                 <table className="table w-full">
                     <thead>
                         <tr>
