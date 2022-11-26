@@ -1,8 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import toast from 'react-hot-toast';
 
 const AllBuyers = () => {
-    const { data: allBuyer = [], refetch } = useQuery({
+    const { data: buyers = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
             const res = await fetch(`http://localhost:5000/allUser/Buyer`);
@@ -11,11 +12,30 @@ const AllBuyers = () => {
         }
     });
 
+    console.log(buyers._id)
+
+    const handleDeleteDoctor = buyer => {
+        console.log(buyer._id)
+        fetch(`http://localhost:5000/buyers/${buyer._id}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    refetch();
+                    toast.success(`Doctor ${buyer.name} deleted successfully`)
+                }
+            })
+    }
+
 
     return (
-        <div>
-            <h2 className="text-3xl">All Seller</h2>
-            <div className="overflow-x-auto">
+        <div className='mt-4'>
+            <h2 className="text-3xl">All Buyer</h2>
+            <div className="overflow-x-auto mt-4">
                 <table className="table w-full">
                     <thead>
                         <tr>
@@ -27,11 +47,11 @@ const AllBuyers = () => {
                     </thead>
                     <tbody>
                         {
-                            allBuyer.map((user, i) => <tr key={user._id}>
+                            buyers.map((buyer, i) => <tr key={buyer._id}>
                                 <th>{i + 1}</th>
-                                <td>{user.name}</td>
-                                <td>{user.email}</td>
-                                <td><button className='btn btn-xs btn-danger'>Delete</button></td>
+                                <td>{buyer.name}</td>
+                                <td>{buyer.email}</td>
+                                <td><button onClick={() => handleDeleteDoctor(buyer)} className='btn btn-xs btn-danger'>Delete</button></td>
                             </tr>)
                         }
 
