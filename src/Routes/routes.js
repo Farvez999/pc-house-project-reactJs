@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom"
 import AllUsers from "../Dashboard/AllUsers"
 import AllBuyers from "../Dashboard/Admin/AllBuyers"
-import MyProducts from "../Dashboard/MyProducts"
+import MyProducts from "../Dashboard/Buyers/MyProducts"
 import AddProduct from "../Dashboard/Seller/AddProduct"
 import AllSeller from "../Dashboard/Admin/AllSeller"
 import SellerProducts from "../Dashboard/Seller/SellerProducts"
@@ -55,7 +55,7 @@ const router = createBrowserRouter([
         // errorElement: <DisplayError></DisplayError>,
         children: [
             {
-                path: '/dashboard',
+                path: '/dashboard/myProducts',
                 element: <MyProducts></MyProducts>
             },
             {
@@ -63,7 +63,7 @@ const router = createBrowserRouter([
                 element: <SellerRoute><AddProduct></AddProduct></SellerRoute>
             },
             {
-                path: '/dashboard/myProducts',
+                path: '/dashboard/sellerProducts',
                 element: <SellerRoute><SellerProducts></SellerProducts></SellerRoute>
             },
 

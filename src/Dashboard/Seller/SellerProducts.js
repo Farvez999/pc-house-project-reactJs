@@ -5,7 +5,6 @@ import Loading from '../../Pages/Shared/Loading'
 
 const SellerProducts = () => {
 
-    const [deletingDoctor, setDeletingDoctor] = useState(null);
 
     const { data: products, isLoading, refetch } = useQuery({
         queryKey: ['products'],
@@ -41,9 +40,6 @@ const SellerProducts = () => {
             })
     }
 
-    const closeModal = () => {
-        setDeletingDoctor(null)
-    }
 
     if (isLoading) {
         return <Loading></Loading>
@@ -51,7 +47,7 @@ const SellerProducts = () => {
 
     return (
         <div>
-            <h3 className="text-3xl mb-5">Manage Doctor : {products?.length}</h3>
+            <h3 className="text-3xl mb-5">My Product : {products?.length}</h3>
 
             <div className="overflow-x-auto">
                 <table className="table w-full">
@@ -79,7 +75,7 @@ const SellerProducts = () => {
                                 </div></td>
                                 <td>{product.title}</td>
                                 <td>{product.resalePrice}</td>
-                                <td>{product.email}</td>
+                                <td>{'aviable'}</td>
                                 <td>
                                     <label onClick={() => handleDeleteDoctor(product)} htmlFor="confirmation-modal" className="btn btn-sm btn-error">Delete</label>
                                 </td>

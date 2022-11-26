@@ -5,10 +5,10 @@ import ProductOption from './ProductOption';
 
 const CategoryDetails = () => {
 
-    const data = useLoaderData()
-    // console.log(data)
-    const { title } = data;
-    // console.log(data)
+    const categoryData = useLoaderData()
+    // console.log(categoryData)
+    const { title } = categoryData;
+    // console.log(title)
 
     const [products, setProducts] = useState([])
     const [modelProduct, setModelProduct] = useState(null)
@@ -16,7 +16,7 @@ const CategoryDetails = () => {
     useEffect(() => {
         fetch(`http://localhost:5000/categories/${title}`)
             .then(res => res.json())
-            .then(data => { setProducts(data); })
+            .then(data => { setProducts(data); console.log(data) })
     }, [title])
 
 
@@ -28,7 +28,7 @@ const CategoryDetails = () => {
                     products.map(product => <ProductOption
                         key={product._id}
                         product={product}
-                        data={data}
+                        data={categoryData}
                         setModelProduct={setModelProduct}
                     ></ProductOption>)
                 }

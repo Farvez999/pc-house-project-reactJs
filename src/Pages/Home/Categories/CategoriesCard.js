@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 
 const CategoriesCard = ({ categorie }) => {
     const { _id, title, icon } = categorie;
-    console.log(categorie)
+    // console.log(categorie)
 
     const handleCategory = () => {
-        console.log(categorie)
+        // console.log(categorie)
 
     }
 

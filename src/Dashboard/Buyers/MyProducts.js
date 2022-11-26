@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
-import { AuthContext } from '../contexts/AuthProvider';
+import { AuthContext } from '../../contexts/AuthProvider';
 
 const MyProducts = () => {
 
@@ -31,7 +31,7 @@ const MyProducts = () => {
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>Name</th>
+                                <th>Image</th>
                                 <th>Products Name</th>
                                 <th>Price</th>
                                 <th>Payment</th>
@@ -39,11 +39,15 @@ const MyProducts = () => {
                         </thead>
                         <tbody>
                             {
-                                bookings.map((booking, i) => <tr key={booking._id}>
+                                bookings?.map((booking, i) => <tr key={booking._id}>
                                     <th>{i + 1}</th>
-                                    <td>{booking.user}</td>
-                                    <td>{booking.product_name}</td>
-                                    <td>{booking.resale_price}</td>
+                                    <td><div className="avatar">
+                                        <div className="w-12 rounded-full">
+                                            <img src={booking.img} alt="" />
+                                        </div>
+                                    </div></td>
+                                    <td>{booking.title}</td>
+                                    <td>{booking.resalePrice}</td>
                                     {/* <td>
                                         {
                                         booking.price && !booking.paid &&

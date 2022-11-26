@@ -3,7 +3,7 @@ import toast from 'react-hot-toast';
 import { AuthContext } from '../../../contexts/AuthProvider';
 
 const BookingModal = ({ modelProduct, setModelProduct }) => {
-    const { image, product_name, resale_price } = modelProduct;
+    const { img, title, resalePrice } = modelProduct;
     console.log(modelProduct)
 
     const { user } = useContext(AuthContext)
@@ -11,17 +11,17 @@ const BookingModal = ({ modelProduct, setModelProduct }) => {
     const handleBooking = event => {
         event.preventDefault();
         const form = event.target;
-        const resale_price = form.resale_price.value;
+        const resalePrice = form.resalePrice.value;
         const name = form.name.value;
         const email = form.email.value;
         const phone = form.phone.value;
         const meetingLocation = form.meetingLocation.value
 
         const booking = {
-            image,
-            product_name,
+            img,
+            title,
             user: name,
-            resale_price,
+            resalePrice,
             email,
             phone,
             meetingLocation
@@ -57,10 +57,10 @@ const BookingModal = ({ modelProduct, setModelProduct }) => {
             <div className="modal">
                 <div className="modal-box relative">
                     <label htmlFor="booking-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                    <h3 className="text-lg font-bold">{product_name}</h3>
+                    <h3 className="text-lg font-bold">{title}</h3>
 
                     <form onSubmit={handleBooking} className='grid grid-cols-1 gap-3 mt-6'>
-                        <input name="resale_price" type="text" disabled value={resale_price} className="input w-full input-bordered " />
+                        <input name="resalePrice" type="text" disabled value={resalePrice} className="input w-full input-bordered " />
 
                         <input name="name" type="text" defaultValue={user?.displayName} disabled placeholder="Your Name" className="input w-full input-bordered" />
                         <input name="email" type="email" defaultValue={user?.email} disabled placeholder="Email Address" className="input w-full input-bordered" />

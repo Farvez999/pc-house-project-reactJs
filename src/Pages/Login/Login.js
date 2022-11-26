@@ -1,6 +1,7 @@
 import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import { useForm } from "react-hook-form";
+import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import { useToken } from '../../hooks/useToken';
@@ -40,15 +41,37 @@ const Login = () => {
             });
     }
 
+    // const handleGoogleLogin = () => {
+    //     googleLogin(googleProvider)
+    //         .then((result) => {
+    //             const user = result.user;
+    //             console.log(user)
+    //             navigate(from, { replace: true });
+    //         }).catch((error) => {
+    //             console.log(error.message)
+    //         });
+    // }
+
     const handleGoogleLogin = () => {
-        googleLogin(googleProvider)
+
+        // setLoader(true)
+
+        googleLogin()
             .then((result) => {
                 const user = result.user;
-                console.log(user)
-                navigate(from, { replace: true });
+                setLoginUserEmail(user.email)
+                // setLoader(false);
+
             }).catch((error) => {
-                console.log(error.message)
+
+                const errorMessage = error.message;
+                toast.error(errorMessage)
+                // setLoader(false)
+
+
             });
+
+
     }
 
     return (

@@ -9,12 +9,12 @@ import { useToken } from '../../hooks/useToken';
 const Signup = () => {
 
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const { SignUp, updateUser, googleLogin } = useContext(AuthContext)
+    const { user, SignUp, updateUser, googleLogin } = useContext(AuthContext)
     const [signUpError, setSignUpError] = useState('');
 
     const [createUserEmail, setCreateUserEmail] = useState('')
     const [token] = useToken(createUserEmail)
-
+    console.log(user)
 
     const googleProvider = new GoogleAuthProvider();
 
@@ -32,6 +32,7 @@ const Signup = () => {
         console.log(data)
         setSignUpError('')
 
+
         SignUp(data.email, data.password)
             .then((result) => {
                 const user = result.user;
@@ -40,6 +41,7 @@ const Signup = () => {
                 const userInfo = {
                     displayName: data.name
                 }
+
                 updateUser(userInfo)
                     .then(() => {
                         saveUserDasboard(data.name, data.email, data.role)
@@ -71,14 +73,36 @@ const Signup = () => {
     }
 
 
+    // const handleGoogleLogin = () => {
+    //     const role = 'Buyer';
+    //     googleLogin(googleProvider)
+    //         .then((result) => {
+    //             const user = result.user;
+    //             saveUserDasboard(user.displayName, user.email, role)
+    //             console.log(user)
+    //             navigate(from, { replace: true });
+    //         }).catch((error) => {
+    //             console.log(error.message)
+    //         });
+    // }
     const handleGoogleLogin = () => {
-        googleLogin(googleProvider)
+
+        // setLoader(true)
+        googleLogin()
             .then((result) => {
                 const user = result.user;
-                console.log(user)
-                navigate(from, { replace: true });
+                const role = 'Buyer'
+                saveUserDasboard(user.displayName, user.email, role);
+                // setCreateUserEmail(user?.email);
+                // setLoader(false);
+
+
             }).catch((error) => {
-                console.log(error.message)
+
+                const errorMessage = error.message;
+                toast.error(errorMessage)
+                // setLoader(false)
+
             });
     }
 
