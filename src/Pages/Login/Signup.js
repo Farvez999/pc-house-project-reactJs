@@ -42,8 +42,8 @@ const Signup = () => {
                 }
                 updateUser(userInfo)
                     .then(() => {
-                        saveUserDasboard(data.name, data.email, data.userSelect)
-                        console.log(data.userSelect)
+                        saveUserDasboard(data.name, data.email, data.role)
+                        console.log(data.role)
                     }).catch((error) => {
                         console.log(error)
                     });
@@ -55,8 +55,8 @@ const Signup = () => {
             });
     }
 
-    const saveUserDasboard = (name, email, userSelect) => {
-        const user = { name, email, userSelect };
+    const saveUserDasboard = (name, email, role) => {
+        const user = { name, email, role };
         fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {
@@ -106,7 +106,7 @@ const Signup = () => {
                     </div>
 
                     <div className="form-control w-full max-w-xs mt-4">
-                        <select {...register("userSelect")} className="select select-bordered w-full max-w-xs">
+                        <select {...register("role")} className="select select-bordered w-full max-w-xs">
 
                             <option>Seller</option>
                             <option>Buyer</option>

@@ -6,9 +6,9 @@ import ProductOption from './ProductOption';
 const CategoryDetails = () => {
 
     const data = useLoaderData()
-    console.log(data)
+    // console.log(data)
     const { title } = data;
-    console.log(data)
+    // console.log(data)
 
     const [products, setProducts] = useState([])
     const [modelProduct, setModelProduct] = useState(null)
@@ -16,7 +16,7 @@ const CategoryDetails = () => {
     useEffect(() => {
         fetch(`http://localhost:5000/categories/${title}`)
             .then(res => res.json())
-            .then(data => { setProducts(data); console.log(data) })
+            .then(data => { setProducts(data); })
     }, [title])
 
 

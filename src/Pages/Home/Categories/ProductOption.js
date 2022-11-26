@@ -2,8 +2,8 @@ import React from 'react';
 
 const ProductOption = ({ product, data, setModelProduct }) => {
     const { image, location, orginal_price, product_name, resale_price, seller_name, verify_seller, yearOFuse } = product
-    console.log(product)
-    console.log(data)
+    // console.log(product)
+    // console.log(data)
     return (
         <div className="card card-compact bg-base-100 shadow-xl">
             <figure><img src={image} alt="Shoes" /></figure>

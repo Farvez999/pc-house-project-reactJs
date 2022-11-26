@@ -1,7 +1,7 @@
 import React from 'react';
 import CategoriesCard from './CategoriesCard';
 import { useQuery } from '@tanstack/react-query';
-import Loading from '../../Shared/loading';
+import Loading from '../../Shared/Loading';
 
 const Categories = () => {
 
