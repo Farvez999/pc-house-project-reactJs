@@ -2,6 +2,7 @@ import React from 'react';
 import { GoVerified } from 'react-icons/go';
 import { FaUserCircle } from 'react-icons/fa';
 import { MdLocationOn } from 'react-icons/md';
+import { FcOvertime } from 'react-icons/fc';
 
 const ProductOption = ({ product, data, setModelProduct }) => {
     const { img, location, originalPrice, title, resalePrice, verify_seller, used, date, author } = product
@@ -9,22 +10,19 @@ const ProductOption = ({ product, data, setModelProduct }) => {
     // console.log(data)
     return (
         <div className="card card-compact bg-base-100 shadow-xl">
-            <figure><img src={img} alt="Shoes" /></figure>
+            <figure><img className='h-60' src={img} alt="Shoes" /></figure>
             <div className="card-body">
                 <h2 className="card-title">{title}</h2>
-                <p><MdLocationOn className='inline-block text-pink-600'></MdLocationOn> {location}</p>
+                <p className='font-bold'><MdLocationOn className='inline-block text-pink-600'></MdLocationOn> {location}</p>
+                <hr></hr>
                 <div className='flex justify-between'>
-                    <p>Resale Price : ${resalePrice}</p>
-                    <p>Orginal Price : ${originalPrice}</p>
+                    <p className='font-bold text-blue-700'>Resale Price : ${resalePrice}</p>
+                    <p className=' text-red-600'>Orginal Price : ${originalPrice}</p>
                 </div>
                 <div className='flex justify-between'>
-                    <p>Year of Use : {used} Year</p>
-                    <p>Post Time : {date}</p>
+                    <p>Used : {used}</p>
+                    <p><FcOvertime className='text-blue-600 inline-block'></FcOvertime> {date.slice(0, 10)}</p>
                 </div>
-                {/* <div className='flex justify-between'>
-                    <p>Saller Name : {author.name}</p>
-                    <p><GoVerified></GoVerified> {author.varify}</p>
-                </div> */}
                 <div className="card-actions justify-end">
                     <label
                         onClick={() => setModelProduct(product)}
@@ -35,7 +33,10 @@ const ProductOption = ({ product, data, setModelProduct }) => {
                 <hr></hr>
                 <div className='flex justify-between my-1'>
                     <p><FaUserCircle className='inline-block'></FaUserCircle> {author.name}</p>
-                    <p><GoVerified className='inline-block text-blue-600'></GoVerified> {author.varify}</p>
+                    {
+                        author.varify && <p><GoVerified className='inline-block text-blue-600'></GoVerified> {author.varify}</p>
+                    }
+
                 </div>
             </div>
         </div>

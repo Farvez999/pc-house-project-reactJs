@@ -57,9 +57,8 @@ const AddProduct = () => {
                         originalPrice: data.originalPrice,
                         description: data.description,
                         mobileNumber: data.mobileNumber,
+
                         author: author,
-
-
                     }
 
                     fetch(`http://localhost:5000/addProduct`, {
