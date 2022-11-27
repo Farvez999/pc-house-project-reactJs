@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import toast from 'react-hot-toast';
+import { GoVerified } from 'react-icons/go';
 
 const AllSeller = () => {
 
@@ -29,6 +30,23 @@ const AllSeller = () => {
             })
     }
 
+
+    const handleMakeVerify = id => {
+        fetch(`http://localhost:5000/users/seller/${id}`, {
+            method: 'PUT',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                    toast.success('Make verified successful.')
+                    refetch();
+                }
+            })
+    }
+
     return (
         <div>
             <h2 className="text-3xl mt-4">All Seller</h2>
@@ -39,6 +57,7 @@ const AllSeller = () => {
                             <th></th>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>Verify Seller</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
@@ -48,6 +67,13 @@ const AllSeller = () => {
                                 <th>{i + 1}</th>
                                 <td>{seller.name}</td>
                                 <td>{seller.email}</td>
+
+                                <td>{
+                                    seller?.varify !== 'verified' ? <button
+                                        onClick={() => handleMakeVerify(seller._id)} className='btn btn-xs btn-primary'>Make Verify</button> : <GoVerified></GoVerified>
+                                }</td>
+
+
                                 <td><button onClick={() => handleDeleteDoctor(seller)} className='btn btn-xs btn-danger'>Delete</button></td>
                             </tr>)
                         }

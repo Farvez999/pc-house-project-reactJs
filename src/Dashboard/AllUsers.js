@@ -54,7 +54,7 @@ const AllUsers = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* {
+                        {
                             users.map((user, i) => <tr key={user._id}>
                                 <th>{i + 1}</th>
                                 <td>{user.name}</td>
@@ -62,7 +62,7 @@ const AllUsers = () => {
                                 <td>{user?.role !== 'admin' && <button onClick={() => handleMakeAdmin(user._id)} className='btn btn-xs btn-primary'>Make Admin</button>}</td>
                                 <td><button className='btn btn-xs btn-danger'>Delete</button></td>
                             </tr>)
-                        } */}
+                        }
 
                     </tbody>
                 </table>

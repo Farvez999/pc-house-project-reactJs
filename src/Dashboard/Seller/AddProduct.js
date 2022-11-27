@@ -26,6 +26,7 @@ const AddProduct = () => {
 
     console.log(author)
 
+
     const onSubmit = (data) => {
         setIsloader(true)
         const imageHostKey = process.env.REACT_APP_IMAGE_BB_KEY;
