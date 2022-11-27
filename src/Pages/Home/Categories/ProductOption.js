@@ -3,11 +3,41 @@ import { GoVerified } from 'react-icons/go';
 import { FaUserCircle } from 'react-icons/fa';
 import { MdLocationOn } from 'react-icons/md';
 import { FcOvertime } from 'react-icons/fc';
+import toast from 'react-hot-toast';
 
 const ProductOption = ({ product, data, setModelProduct }) => {
-    const { img, location, originalPrice, title, resalePrice, verify_seller, used, date, author } = product
-    // console.log(product)
-    // console.log(data)
+
+    const { img, location, originalPrice, title, resalePrice, used, date, author } = product
+
+    const handleWishlis = () => {
+        const wishlist = {
+            img,
+            title,
+            author,
+            resalePrice
+        }
+
+        fetch('http://localhost:5000/wishlist', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(wishlist)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.acknowledged) {
+                    toast.success(`${title} Added Dashboard Wishlist`)
+                } else {
+                    toast.error(data.message)
+                }
+
+            })
+
+        console.log(wishlist)
+    }
+
     return (
         <div className="card card-compact bg-base-100 shadow-xl">
             <figure><img className='h-60' src={img} alt="Shoes" /></figure>
@@ -24,6 +54,11 @@ const ProductOption = ({ product, data, setModelProduct }) => {
                     <p><FcOvertime className='text-blue-600 inline-block'></FcOvertime> {date.slice(0, 10)}</p>
                 </div>
                 <div className="card-actions justify-end">
+                    <label
+                        onClick={handleWishlis}
+                        htmlFor="booking-modal"
+                        className="btn btn-secondary"
+                    >WishList</label>
                     <label
                         onClick={() => setModelProduct(product)}
                         htmlFor="booking-modal"

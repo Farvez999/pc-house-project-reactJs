@@ -1,16 +1,19 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
+import { AuthContext } from '../../contexts/AuthProvider';
 import Loading from '../../Pages/Shared/Loading'
 
 const SellerProducts = () => {
 
+    const { user } = useContext(AuthContext)
+    console.log(user)
 
     const { data: products, isLoading, refetch } = useQuery({
         queryKey: ['products'],
         queryFn: async () => {
             try {
-                const res = await fetch('http://localhost:5000/products', {
+                const res = await fetch(`http://localhost:5000/products/${user.email}`, {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     }
@@ -24,7 +27,7 @@ const SellerProducts = () => {
         }
     });
 
-    const handleDeleteDoctor = product => {
+    const handleDelete = product => {
         fetch(`http://localhost:5000/products/${product._id}`, {
             method: 'DELETE',
             headers: {
@@ -77,7 +80,7 @@ const SellerProducts = () => {
                                 <td>{product.resalePrice}</td>
                                 <td>{'aviable'}</td>
                                 <td>
-                                    <label onClick={() => handleDeleteDoctor(product)} htmlFor="confirmation-modal" className="btn btn-sm btn-error">Delete</label>
+                                    <label onClick={() => handleDelete(product)} htmlFor="confirmation-modal" className="btn btn-sm btn-error">Delete</label>
                                 </td>
                             </tr>)
                         }
