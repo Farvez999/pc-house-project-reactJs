@@ -1,16 +1,50 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { GoVerified } from 'react-icons/go';
 import { FaUserCircle } from 'react-icons/fa';
 import { MdLocationOn } from 'react-icons/md';
 import { FcOvertime } from 'react-icons/fc';
 import BookingModal from '../Categories/BookingModal';
+import toast from 'react-hot-toast';
+import { AuthContext } from '../../../contexts/AuthProvider';
 
 const AdvertisePCard = ({ product }) => {
+
+    const { user } = useContext(AuthContext);
 
     const [products, setProducts] = useState([])
     const [modelProduct, setModelProduct] = useState(null)
 
     const { img, location, originalPrice, title, resalePrice, used, date, author } = product
+
+    const handleWishlist = () => {
+        const wishlist = {
+            img,
+            title,
+            email: user?.email,
+            author,
+            resalePrice
+        }
+
+        fetch('https://used-products-resale-server-vert.vercel.app/wishlist', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(wishlist)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.acknowledged) {
+                    toast.success(`${title} Added Dashboard Wishlist`)
+                } else {
+                    toast.error(data.message)
+                }
+
+            })
+
+        console.log(wishlist)
+    }
 
     return (
         <section>
@@ -30,11 +64,11 @@ const AdvertisePCard = ({ product }) => {
                         <p><FcOvertime className='text-blue-600 inline-block'></FcOvertime> {date.slice(0, 10)}</p>
                     </div>
                     <div className="card-actions justify-end">
-                        {/* <label
+                        <label
                             onClick={handleWishlist}
                             htmlFor="booking-modal"
                             className="btn btn-secondary"
-                        >WishList</label> */}
+                        >WishList</label>
                         <label
                             onClick={() => setModelProduct(product)}
                             htmlFor="booking-modal"

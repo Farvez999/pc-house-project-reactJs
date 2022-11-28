@@ -11,7 +11,7 @@ const MyWishlists = () => {
     const [products, setProducts] = useState([])
     const [modelProduct, setModelProduct] = useState(null)
 
-    const url = `http://localhost:5000/wishlists?email=${user?.email}`;
+    const url = `https://used-products-resale-server-vert.vercel.app/wishlists?email=${user?.email}`;
     console.log(user?.email)
 
     const { data: wishlists = [] } = useQuery({
@@ -54,6 +54,8 @@ const MyWishlists = () => {
                                     <td>{wishlist.title}</td>
                                     <td>{wishlist.resalePrice}</td>
                                     <td>
+
+
                                         <label
                                             onClick={() => setModelProduct(wishlist)}
                                             htmlFor="booking-modal"

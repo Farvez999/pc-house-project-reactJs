@@ -1,70 +1,27 @@
-# Getting Started with Create React App
+# PC House Application Repository
+PC House has been founded on 1 March 2020. From then to now, PC House has won the heart of many people and now is a country-wide renowned brand. That has been possible due to the hard work PC House has done to satisfy its customers. Having the aim to satisfy customers, providing customers with their required products, and being true to their motto, “Customers Come First,” has brought PC House to the top of the E-Commerce Site and also is one of the largest Computer and Technology product retailers. PC House has over 700 employees and is growing more and more, working diligently to fulfill the Main Criteria of PC House’s Motto or Vision. PC House is located in 5 Central territories in Dhaka, Gazipur, Chittagong, Khulna, and Rangpur. PC House has a total of 16 Physical outlets all over the country; selling genuine Tech products. Among them, 9 outlets are in Dhaka as it’s the capital city. PC House also has two branches in Chittagong; the commercial capital of Bangladesh. There is one Branch in Gazipur, one in Khulna, and one Branch is in Rangpur. Apart from the Physical Branches, We also have our successful E-Commerce website.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Live Link
+PC House Live Demo Link -> [PC Houseo](https://used-products-resale-clients.web.app/).
 
-## Available Scripts
+## Context API
+Documentation Link -> [Context API](https://reactjs.org/docs/context.html#api)
 
-In the project directory, you can run:
+## React Query
+React Query -> [React Query](https://tanstack.com/query/v4/?from=reactQueryV3&original=https://react-query-v3.tanstack.com/)
 
-### `npm start`
+## React Router Dom v6.4 
+Documentation Link -> [React Router Dom](https://reactrouter.com/en/main/start/overview)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Resources & Credits
+Firebase -> [Firebase](https://console.firebase.google.com/)
+React tailwindcss -> [React Tailwindcss](https://tailwindcss.com/)
+daisyui -> [daisyui](https://daisyui.com/)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Server sites
+Node JS -> [Node JS](https://nodejs.org/en/)
+Express js -> [Express js](https://expressjs.com/)
+Cors -> [Cors](https://www.npmjs.com/package/cors)
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Other Resources
+JWT -> [JWT](https://github.com/auth0/node-jsonwebtoken)

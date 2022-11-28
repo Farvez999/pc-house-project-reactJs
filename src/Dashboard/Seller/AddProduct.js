@@ -19,7 +19,7 @@ const AddProduct = () => {
 
     useEffect(() => {
         setLoader(true)
-        fetch(`http://localhost:5000/users/${email}`)
+        fetch(`https://used-products-resale-server-vert.vercel.app/users/${email}`)
             .then(res => res.json())
             .then(data => { return (setAuthor(data), setLoader(false)) })
     }, [email])
@@ -61,7 +61,7 @@ const AddProduct = () => {
                         author: author,
                     }
 
-                    fetch(`http://localhost:5000/addProduct`, {
+                    fetch(`https://used-products-resale-server-vert.vercel.app/addProduct`, {
                         method: 'POST',
                         headers: {
 

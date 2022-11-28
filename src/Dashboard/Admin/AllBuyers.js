@@ -6,7 +6,7 @@ const AllBuyers = () => {
     const { data: buyers = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/allUser/Buyer`);
+            const res = await fetch(`https://used-products-resale-server-vert.vercel.app/allUser/Buyer`);
             const data = await res.json();
             return data;
         }
@@ -16,7 +16,7 @@ const AllBuyers = () => {
 
     const handleDeleteDoctor = buyer => {
         console.log(buyer._id)
-        fetch(`http://localhost:5000/buyers/${buyer._id}`, {
+        fetch(`https://used-products-resale-server-vert.vercel.app/buyers/${buyer._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`

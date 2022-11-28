@@ -15,8 +15,8 @@ const Navbar = () => {
         <li className='font-semibold'><Link to='/'>Home</Link></li>
         <li className='font-semibold'><Link to='/blog'>Blog</Link></li>
         {/* <li className='font-semibold'><Link to='/appoinment'>Appoinment</Link></li>
-        <li className='font-semibold'><Link to='/reviews'>Reviews</Link></li> */}
-        <li className='font-semibold'><Link to='/contactUs'>Contact Us</Link></li>
+        <li className='font-semibold'><Link to='/reviews'>Reviews</Link></li>
+        <li className='font-semibold'><Link to='/contactUs'>Contact Us</Link></li> */}
         {
             user?.uid ?
                 <>
