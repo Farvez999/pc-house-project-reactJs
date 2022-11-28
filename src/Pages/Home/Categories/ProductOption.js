@@ -1,18 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { GoVerified } from 'react-icons/go';
 import { FaUserCircle } from 'react-icons/fa';
 import { MdLocationOn } from 'react-icons/md';
 import { FcOvertime } from 'react-icons/fc';
 import toast from 'react-hot-toast';
+import { AuthContext } from '../../../contexts/AuthProvider';
 
 const ProductOption = ({ product, data, setModelProduct }) => {
 
+    const { user } = useContext(AuthContext);
+
     const { img, location, originalPrice, title, resalePrice, used, date, author } = product
 
-    const handleWishlis = () => {
+    const handleWishlist = () => {
         const wishlist = {
             img,
             title,
+            email: user?.email,
             author,
             resalePrice
         }
@@ -55,7 +59,7 @@ const ProductOption = ({ product, data, setModelProduct }) => {
                 </div>
                 <div className="card-actions justify-end">
                     <label
-                        onClick={handleWishlis}
+                        onClick={handleWishlist}
                         htmlFor="booking-modal"
                         className="btn btn-secondary"
                     >WishList</label>

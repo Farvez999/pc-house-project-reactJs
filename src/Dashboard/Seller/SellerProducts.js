@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import Loading from '../../Pages/Shared/Loading'
 
@@ -8,6 +9,9 @@ const SellerProducts = () => {
 
     const { user } = useContext(AuthContext)
     console.log(user)
+    const [isloader, setIsloader] = useState(false)
+
+    const navigate = useNavigate()
 
     const { data: products, isLoading, refetch } = useQuery({
         queryKey: ['products'],
@@ -26,6 +30,55 @@ const SellerProducts = () => {
             }
         }
     });
+
+    const addAdvertise = id => {
+
+
+        fetch(`http://localhost:5000/addProduct/addAdvertisement/${id}`, {
+            method: 'PUT',
+            headers: {
+
+                'content-type': 'application/json',
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+
+            },
+            // body: JSON.stringify(advertise)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    console.log(data);
+                    setIsloader(false)
+                    toast.success(`Advertise Added successfully`)
+                    refetch()
+                }
+            })
+            .catch(error => { toast.error(error.message); setIsloader(false) })
+    }
+
+    const removeAdvertise = (id) => {
+        fetch(`http://localhost:5000/addProduct/removeAdvertisement/${id}`, {
+            method: 'PUT',
+            headers: {
+
+                'content-type': 'application/json',
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+
+            },
+            // body: JSON.stringify(advertise)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    console.log(data);
+                    setIsloader(false)
+                    toast.success(`Advertise Remove successfully`)
+                    refetch()
+                }
+            })
+            .catch(error => { toast.error(error.message); setIsloader(false) })
+    }
+
 
     const handleDelete = product => {
         fetch(`http://localhost:5000/products/${product._id}`, {
@@ -62,8 +115,8 @@ const SellerProducts = () => {
                             <th>Name</th>
                             <th>Resale Price</th>
                             <th>Product Status</th>
-                            <th>Action</th>
                             <th>Advertise Status</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -78,7 +131,20 @@ const SellerProducts = () => {
                                 </div></td>
                                 <td>{product.title}</td>
                                 <td>{product.resalePrice}</td>
-                                <td>{'aviable'}</td>
+                                {
+                                    product.paid ? <td className='text-red-600'>{'sold'}</td> : <td className='text-green-600'>{'aviable'}</td>
+                                }
+                                {
+
+                                    product.paid ? <td className='text-red-600'>{'sold'}</td> :
+                                        product.advertise ?
+                                            <td><button className="btn btn-outline btn-error btn-xs" onClick={() => removeAdvertise(product._id)}>remove advertise</button></td>
+
+                                            :
+
+                                            <td><button className="btn  btn-primary btn-xs" onClick={() => addAdvertise(product._id)}>add advertise</button></td>
+
+                                }
                                 <td>
                                     <label onClick={() => handleDelete(product)} htmlFor="confirmation-modal" className="btn btn-sm btn-error">Delete</label>
                                 </td>

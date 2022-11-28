@@ -17,6 +17,7 @@ import AdminRoute from "./AdminRoutes"
 import PrivateRoutes from "./PrivateRoutes"
 import SellerRoute from "./SellerRoutes"
 import Payment from "../Dashboard/Buyers/Payment"
+import MyWishlists from "../Dashboard/Buyers/MyWishlist/MyWishlists"
 
 const router = createBrowserRouter([
     {
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
                 element: <MyProducts></MyProducts>
             },
             {
+                path: '/dashboard/myWishlists',
+                element: <MyWishlists></MyWishlists>
+            },
+            {
                 path: '/dashboard/addProducts',
                 element: <SellerRoute><AddProduct></AddProduct></SellerRoute>
             },
@@ -89,6 +94,7 @@ const router = createBrowserRouter([
                 element: <Payment></Payment>,
                 loader: ({ params }) => fetch(`http://localhost:5000/bookings/${params.id}`)
             },
+
         ]
     },
     {

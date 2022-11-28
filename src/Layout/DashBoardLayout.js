@@ -27,6 +27,7 @@ const DashBoardLayout = () => {
                         {
                             !isSeller && !isAdmin && <>
                                 <li><Link to='/dashboard/myProducts'>My Products</Link></li>
+                                <li><Link to='/dashboard/myWishlists'>My Wishlists</Link></li>
                             </>
                         }
 
